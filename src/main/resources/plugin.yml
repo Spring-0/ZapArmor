@@ -4,3 +4,7 @@ main: dev.spring93.zaparmor.ZapArmor
 prefix: [ZapArmor]
 load: STARTUP
 authors: [Spring93]
+commands:
+  zaparmor:
+    description: Executes ZapArmor sub-commands.
+    usage: /<command> <sub-command> [arguments]
