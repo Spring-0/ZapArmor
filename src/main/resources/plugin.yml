@@ -1,0 +1,6 @@
+name: ZapArmor
+version: '${project.version}'
+main: dev.spring93.zaparmor.ZapArmor
+prefix: [ZapArmor]
+load: STARTUP
+authors: [Spring93]
