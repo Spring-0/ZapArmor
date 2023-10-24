@@ -47,3 +47,8 @@ armor-set:
     enchantments:
       - "DURABILITY:3"
       - "PROTECTION_ENVIRONMENTAL:2"
+
+  full-set-equipped-effects:
+    shockwave:
+      enabled: true
+      value: 3 # Radius
