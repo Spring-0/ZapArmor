@@ -9,8 +9,16 @@ public class ArmorConfig extends Config{
         super(fileName);
     }
 
-    public boolean isArmorSetEnabled(String armorSetName) {
-        return config.getBoolean("armor-sets." + armorSetName + ".enabled");
+    public boolean isArmorSetEnabled() {
+        return config.getBoolean("armor-set.enabled");
+    }
+
+    public boolean isEffectEnabled(String effectName) {
+        return config.getBoolean("armor-set.full-set-equipped-effects." + effectName + ".enabled");
+    }
+
+    public int getEffectInteger(String effectName) {
+        return config.getInt("armor-set.full-set-equipped-effects." + effectName + ".value");
     }
 
 }
