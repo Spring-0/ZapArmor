@@ -4,12 +4,11 @@ import dev.spring93.zaparmor.ZapArmor;
 import dev.spring93.zaparmor.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 public abstract class Config {
     protected FileConfiguration config;
@@ -17,19 +16,15 @@ public abstract class Config {
     protected String fileName;
 
     public Config(String fileName) {
-        ZapArmor plugin = ZapArmor.getInstance();
         this.fileName = fileName;
+        ZapArmor plugin = ZapArmor.getInstance();
         File dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists()) {
             dataFolder.mkdir();
         }
         configFile = new File(dataFolder, fileName + ".yml");
         if (!configFile.exists()) {
-            try {
-                configFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            plugin.saveResource(fileName + ".yml", false);
         }
 
         config = YamlConfiguration.loadConfiguration(configFile);
