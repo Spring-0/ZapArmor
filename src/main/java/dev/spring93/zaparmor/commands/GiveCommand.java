@@ -34,7 +34,7 @@ public class GiveCommand extends BaseCommand {
         String pieceName = args[2];
 
         for(Armor armor : armors) {
-            if(armor.getName().equalsIgnoreCase(armorName)) {
+            if(armor.getName().equalsIgnoreCase(armorName) && armor.getConfig().isArmorSetEnabled()) {
                 if(pieceName.equalsIgnoreCase("random")) {
                     giveRandomPiece(target, armor);
                 } else if(pieceName.equalsIgnoreCase("all")) {
