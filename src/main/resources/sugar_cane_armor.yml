@@ -1,0 +1,49 @@
+armor-set:
+  enabled: true
+  helmet:
+    display-name: "&aSugar Cane Helmet"
+    material: "LEATHER_HELMET"
+    lore:
+      - ""
+      - "&7Made from the finest sugar canes."
+      - "&7Wear it to feel the speed of the wind."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:2"
+
+  chestplate:
+    display-name: "&aSugar Cane Chestplate"
+    material: "LEATHER_CHESTPLATE"
+    lore:
+      - ""
+      - "&7Harness the power of nature."
+      - "&7Feel the energy of the sugar cane."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:2"
+
+  leggings:
+    display-name: "&aSugar Cane Leggings"
+    material: "LEATHER_LEGGINGS"
+    lore:
+      - ""
+      - "&7Run like the wind."
+      - "&7Sugar cane energy in every step."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:2"
+
+  boots:
+    display-name: "&aSugar Cane Boots"
+    material: "LEATHER_BOOTS"
+    lore:
+      - ""
+      - "&7Step lightly and swiftly."
+      - "&7Infused with the power of sugar cane."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:2"

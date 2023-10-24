@@ -45,4 +45,19 @@ public abstract class Config {
     protected String getConfigString(String path) {
         return ChatColor.translateAlternateColorCodes('&', config.getString(path));
     }
+
+    public List<String> getConfigStringList(String path) {
+        List<String> lore = config.getStringList(path);
+        for (int i = 0; i < lore.size(); i++) {
+            String line = lore.get(i);
+            line = ChatColor.translateAlternateColorCodes('&', line);
+            lore.set(i, line);
+        }
+        return lore;
+    }
+
+    public FileConfiguration getConfig() {
+        return config;
+    }
+
 }
