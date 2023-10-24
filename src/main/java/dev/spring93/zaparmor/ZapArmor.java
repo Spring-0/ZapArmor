@@ -1,5 +1,6 @@
 package dev.spring93.zaparmor;
 
+import dev.spring93.zaparmor.armor.SugarCaneArmor;
 import dev.spring93.zaparmor.commands.BaseCommand;
 import dev.spring93.zaparmor.commands.GiveCommand;
 import dev.spring93.zaparmor.config.ArmorConfig;
@@ -53,6 +54,7 @@ public final class ZapArmor extends JavaPlugin {
     }
 
     private void registerListeners() {
+        this.getServer().getPluginManager().registerEvents(new SugarCaneArmor(), this);
     }
 
     private void initConfigs() {
