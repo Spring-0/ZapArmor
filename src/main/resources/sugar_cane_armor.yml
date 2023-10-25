@@ -49,6 +49,14 @@ armor-set:
       - "PROTECTION_ENVIRONMENTAL:2"
 
   full-set-equipped-effects:
-    shockwave:
-      enabled: true
-      value: 3 # Radius
+    custom-effects:
+      shockwave:
+        enabled: true
+        value: 3 # Radius
+    potion-effects:
+      speed:
+        value: 5 # Set to 0 to disable
+        time: 10 # Recommended to keep over 5
+      fast_digging: # haste
+        value: 5 # Set to 0 to disable
+        time: 10 # Recommended to keep over 5

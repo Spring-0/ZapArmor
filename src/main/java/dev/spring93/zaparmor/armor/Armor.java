@@ -26,6 +26,7 @@ public abstract class Armor {
     protected ItemStack chestplate;
     protected ItemStack leggings;
     protected ItemStack boots;
+    protected BukkitRunnable potionEffectTask;
 
     public Armor(String configName) {
         this.name = configName;
@@ -58,6 +59,8 @@ public abstract class Armor {
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
 
+        meta.spigot().setUnbreakable(true);
+
         item.setItemMeta(meta);
 
         return item;
@@ -74,6 +77,7 @@ public abstract class Armor {
                 @Override
                 public void run() {
                     if(isArmorSetFullyEquipped(player)) {
+                        startPotionEffectTask(player);
                         onArmorEquipAction(player);
                         fullSetEquipped.add(player.getUniqueId());
                     }
@@ -92,6 +96,7 @@ public abstract class Armor {
                 @Override
                 public void run() {
                     if(!isArmorSetFullyEquipped(player) && fullSetEquipped.remove(player.getUniqueId())) {
+                        stopPotionEffectTask();
                         onArmorDequipAction(player);
                     }
                 }
@@ -99,6 +104,22 @@ public abstract class Armor {
         }
     }
 
+    protected void startPotionEffectTask(Player player) {
+        potionEffectTask = new BukkitRunnable() {
+            @Override
+            public void run() {
+                applyPotionEffects(player);
+            }
+        };
+        potionEffectTask.runTaskTimer(ZapArmor.getInstance(), 0L, 100L); // 5 seconds
+    }
+
+    protected void stopPotionEffectTask() {
+        if(potionEffectTask != null) {
+            potionEffectTask.cancel();
+            potionEffectTask = null;
+        }
+    }
 
     protected boolean isArmorSetFullyEquipped(Player player){
         ItemStack playerHelmet = player.getInventory().getHelmet();
@@ -145,4 +166,5 @@ public abstract class Armor {
         return armorConfig;
     }
 
+    protected void applyPotionEffects(Player player) {};
 }
