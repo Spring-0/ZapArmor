@@ -1,6 +1,7 @@
 package dev.spring93.zaparmor.armor;
 
 import dev.spring93.zaparmor.config.ArmorConfig;
+import dev.spring93.zaparmor.utils.MessageManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
@@ -25,12 +26,12 @@ public class SugarCaneArmor extends Armor implements Listener {
 
     @Override
     protected void onArmorEquipAction(Player player) {
-        player.sendMessage("You have equipped the SugarCane set.");
+        MessageManager.sendMessage(player, "You have equipped the sugar cane set.");
     }
 
     @Override
     protected void onArmorDequipAction(Player player) {
-        player.sendMessage("You have de-equipped the SugarCane set.");
+        player.sendMessage("You have un-equipped the sugar cane set.");
     }
 
     @Override
@@ -68,11 +69,11 @@ public class SugarCaneArmor extends Armor implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         if(super.isArmorSetFullyEquipped(event.getPlayer())) {
             Block block = event.getBlock();
-            breakWithRadius(block, event);
+            breakWithRadius(block);
         }
     }
 
-    private void breakWithRadius(Block centerBlock, BlockBreakEvent event) {
+    private void breakWithRadius(Block centerBlock) {
         String effectName = "shockwave";
 
         if (!armorConfig.isCustomEffectEnabled(effectName))
