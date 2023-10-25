@@ -4,6 +4,8 @@ import dev.spring93.zaparmor.armor.PatchingArmor;
 import dev.spring93.zaparmor.armor.SugarCaneArmor;
 import dev.spring93.zaparmor.commands.BaseCommand;
 import dev.spring93.zaparmor.commands.GiveCommand;
+import dev.spring93.zaparmor.commands.HelpCommand;
+import dev.spring93.zaparmor.commands.ListCommand;
 import dev.spring93.zaparmor.config.ArmorConfig;
 import dev.spring93.zaparmor.config.DefaultConfig;
 import dev.spring93.zaparmor.utils.MessageManager;
@@ -38,16 +40,18 @@ public final class ZapArmor extends JavaPlugin {
     private void registerCommands() {
         commands = new HashMap<>();
         commands.put("give", new GiveCommand());
+        commands.put("help", new HelpCommand());
+        commands.put("list", new ListCommand());
 
         this.getCommand("zaparmor").setExecutor((sender, command, label, args) -> {
             if (args.length == 0) {
-                MessageManager.sendMessage(sender, "Please specify a sub-command.");
+                sender.sendMessage(MessageManager.getHelpMenu());
                 return true;
             }
 
             BaseCommand subCommand = commands.get(args[0]);
             if (subCommand == null) {
-                MessageManager.sendMessage(sender, "Invalid sub-command.");
+                sender.sendMessage(MessageManager.getHelpMenu());
                 return true;
             }
 

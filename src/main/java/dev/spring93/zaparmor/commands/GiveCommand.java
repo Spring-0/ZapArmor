@@ -48,7 +48,9 @@ public class GiveCommand extends BaseCommand {
             }
         }
 
-        MessageManager.sendMessage(sender, "Invalid armor set or piece.");
+        MessageManager.sendErrorMessage(sender, "Unknown '" + armorName + "' argument.");
+        sender.sendMessage(MessageManager.getArmorList());
+
         return true;
     }
 
@@ -89,7 +91,8 @@ public class GiveCommand extends BaseCommand {
                 player.getInventory().addItem(armor.getBoots());
                 break;
             default:
-                MessageManager.sendMessage(sender, "Invalid piece name.");
+                MessageManager.sendMessage(sender, "Unknown param: " + pieceName + ". Try 'helmet', 'chestplate'," +
+                        "'leggings', 'boots', 'all', 'random'");
                 break;
         }
     }
