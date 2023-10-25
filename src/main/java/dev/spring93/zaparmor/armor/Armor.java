@@ -156,18 +156,45 @@ public abstract class Armor {
         ItemStack playerLeggings = player.getInventory().getLeggings();
         ItemStack playerBoots = player.getInventory().getBoots();
 
-        return (playerHelmet != null && playerHelmet.isSimilar(helmet)) &&
-                (playerChestplate != null && playerChestplate.isSimilar(chestplate)) &&
-                (playerLeggings != null && playerLeggings.isSimilar(leggings)) &&
-                (playerBoots != null && playerBoots.isSimilar(boots));
+        return (playerHelmet != null && isSimilar(playerHelmet, helmet)) &&
+                (playerChestplate != null && isSimilar(playerChestplate, chestplate)) &&
+                (playerLeggings != null && isSimilar(playerLeggings, leggings)) &&
+                (playerBoots != null && isSimilar(playerBoots, boots));
     }
 
     protected boolean isArmorPiece(ItemStack armorPiece) {
-        return armorPiece.isSimilar(helmet) ||
-                armorPiece.isSimilar(chestplate) ||
-                armorPiece.isSimilar(leggings) ||
-                armorPiece.isSimilar(boots);
+        return isSimilar(armorPiece, helmet) ||
+                isSimilar(armorPiece, chestplate) ||
+                isSimilar(armorPiece, leggings) ||
+                isSimilar(armorPiece, boots);
     }
+
+    private boolean isSimilar(ItemStack item, ItemStack configItem) {
+        if (item.hasItemMeta() && configItem.hasItemMeta()) {
+            ItemMeta itemMeta = item.getItemMeta();
+            ItemMeta configItemMeta = configItem.getItemMeta();
+
+            if (itemMeta.hasDisplayName() && configItemMeta.hasDisplayName()) {
+                if (!itemMeta.getDisplayName().equals(configItemMeta.getDisplayName())) {
+                    return false;
+                }
+            }
+
+            if (itemMeta.hasLore() && configItemMeta.hasLore()) {
+                List<String> itemLore = itemMeta.getLore();
+                List<String> configLore = configItemMeta.getLore();
+
+                for (String lore : configLore) {
+                    if (!itemLore.contains(lore)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 
     protected abstract void onArmorEquipAction(Player player);
     protected abstract void onArmorDequipAction(Player player);
