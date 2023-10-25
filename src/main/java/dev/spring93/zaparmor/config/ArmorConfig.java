@@ -1,5 +1,7 @@
 package dev.spring93.zaparmor.config;
 
+import org.bukkit.Color;
+
 public class ArmorConfig extends Config{
     private static ArmorConfig instance;
 
