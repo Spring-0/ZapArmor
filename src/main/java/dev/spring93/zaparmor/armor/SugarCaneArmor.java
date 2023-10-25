@@ -8,9 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.potion.PotionEffect;
 
-import java.util.List;
 
 public class SugarCaneArmor extends Armor implements Listener {
 
@@ -19,7 +17,6 @@ public class SugarCaneArmor extends Armor implements Listener {
     public SugarCaneArmor() {
         super("sugar_cane_armor");
     }
-
 
     @Override
     protected void onArmorEquipAction(Player player) {
@@ -59,5 +56,4 @@ public class SugarCaneArmor extends Armor implements Listener {
             }
         }
     }
-
 }
