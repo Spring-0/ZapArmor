@@ -31,15 +31,6 @@ public class SugarCaneArmor extends Armor implements Listener {
         MessageManager.sendMessage(player, "You have un-equipped the sugar cane set.");
     }
 
-    @Override
-    protected void applyPotionEffects(Player player) {
-        List<PotionEffect> potionEffectsList = getPotionEffects();
-        for(PotionEffect potionEffect : potionEffectsList) {
-            player.removePotionEffect(potionEffect.getType());
-            player.addPotionEffect(potionEffect);
-        }
-    }
-
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if(super.isArmorSetFullyEquipped(event.getPlayer())) {

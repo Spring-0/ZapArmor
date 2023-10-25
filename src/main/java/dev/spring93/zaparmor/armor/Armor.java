@@ -216,6 +216,14 @@ public abstract class Armor {
     }
 
 
+    protected void applyPotionEffects(Player player) {
+        List<PotionEffect> potionEffectsList = getPotionEffects();
+        for(PotionEffect potionEffect : potionEffectsList) {
+            player.removePotionEffect(potionEffect.getType());
+            player.addPotionEffect(potionEffect);
+        }
+    }
+
     protected abstract void onArmorEquipAction(Player player);
     protected abstract void onArmorDequipAction(Player player);
 
@@ -242,5 +250,4 @@ public abstract class Armor {
         return armorConfig;
     }
 
-    protected void applyPotionEffects(Player player) {};
 }
