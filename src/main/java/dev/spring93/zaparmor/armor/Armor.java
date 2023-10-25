@@ -6,6 +6,7 @@ import dev.spring93.zaparmor.config.ArmorConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,12 +16,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class Armor {
     private Set<UUID> fullSetEquipped = new HashSet<>();
@@ -193,6 +193,26 @@ public abstract class Armor {
             return true;
         }
         return false;
+    }
+
+    protected List<PotionEffect> getPotionEffects() {
+        List<PotionEffect> potionEffects = new ArrayList<>();
+        ConfigurationSection effects = armorConfig.getConfig().getConfigurationSection("armor-set.full-set-equipped-effects.potion-effects");
+        if(effects != null) {
+            for(String effectName : effects.getKeys(false)) {
+                int amplifier = effects.getInt(effectName + ".value") - 1;
+
+                if(amplifier < 0) continue;
+
+                int duration = effects.getInt(effectName + ".time") * 20;
+                PotionEffectType type = PotionEffectType.getByName(effectName.toUpperCase());
+                if(type != null) {
+                    PotionEffect effect = new PotionEffect(type, duration, amplifier);
+                    potionEffects.add(effect);
+                }
+            }
+        }
+        return potionEffects;
     }
 
 

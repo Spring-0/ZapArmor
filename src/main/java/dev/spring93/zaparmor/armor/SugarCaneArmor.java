@@ -4,15 +4,12 @@ import dev.spring93.zaparmor.config.ArmorConfig;
 import dev.spring93.zaparmor.utils.MessageManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SugarCaneArmor extends Armor implements Listener {
@@ -31,7 +28,7 @@ public class SugarCaneArmor extends Armor implements Listener {
 
     @Override
     protected void onArmorDequipAction(Player player) {
-        player.sendMessage("You have un-equipped the sugar cane set.");
+        MessageManager.sendMessage(player, "You have un-equipped the sugar cane set.");
     }
 
     @Override
@@ -42,28 +39,6 @@ public class SugarCaneArmor extends Armor implements Listener {
             player.addPotionEffect(potionEffect);
         }
     }
-
-    private List<PotionEffect> getPotionEffects() {
-        List<PotionEffect> potionEffects = new ArrayList<>();
-        ConfigurationSection effects = armorConfig.getConfig().getConfigurationSection("armor-set.full-set-equipped-effects.potion-effects");
-        if(effects != null) {
-            for(String effectName : effects.getKeys(false)) {
-                int amplifier = effects.getInt(effectName + ".value") - 1;
-
-                if(amplifier < 0) continue;
-
-                int duration = effects.getInt(effectName + ".time") * 20;
-                PotionEffectType type = PotionEffectType.getByName(effectName.toUpperCase());
-                if(type != null) {
-                    PotionEffect effect = new PotionEffect(type, duration, amplifier);
-                    potionEffects.add(effect);
-                }
-            }
-        }
-        return potionEffects;
-    }
-
-
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
