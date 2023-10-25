@@ -12,11 +12,11 @@ public class ArmorConfig extends Config{
     }
 
     public boolean isCustomEffectEnabled(String effectName) {
-        return config.getBoolean("armor-set.full-set-equipped-effects.custom-effects" + effectName + ".enabled");
+        return config.getBoolean("armor-set.full-set-equipped-effects.custom-effects." + effectName + ".enabled");
     }
 
     public int getCustomEffectInteger(String effectName) {
-        return config.getInt("armor-set.full-set-equipped-effects.custom-effects" + effectName + ".value");
+        return config.getInt("armor-set.full-set-equipped-effects.custom-effects." + effectName + ".value");
     }
 
     public Color getRGB(String path) {
