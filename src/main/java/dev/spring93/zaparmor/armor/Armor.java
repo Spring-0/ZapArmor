@@ -76,7 +76,6 @@ public abstract class Armor {
         return item;
     }
 
-
     @EventHandler
     public void onArmorEquip(ArmorEquipEvent event) {
         Player player = event.getPlayer();
@@ -114,11 +113,31 @@ public abstract class Armor {
         }
     }
 
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        if(fullSetEquipped.remove(player.getUniqueId())) {
+            stopPotionEffectTask();
+        }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if(isArmorSetFullyEquipped(player)) {
+            startPotionEffectTask(player);
+        }
+    }
+
     protected void startPotionEffectTask(Player player) {
         potionEffectTask = new BukkitRunnable() {
             @Override
             public void run() {
-                applyPotionEffects(player);
+                if(isArmorSetFullyEquipped(player)){
+                    applyPotionEffects(player);
+                }
+                else stopPotionEffectTask();
+
             }
         };
         potionEffectTask.runTaskTimer(ZapArmor.getInstance(), 0L, 100L); // 5 seconds
