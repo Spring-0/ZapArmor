@@ -1,0 +1,59 @@
+armor-set:
+  enabled: true
+  helmet:
+    display-name: "&bPatching Helmet"
+    material: "IRON_HELMET"
+    lore:
+      - ""
+      - "&7Crafted with the strength of iron."
+      - "&7Wear it to fortify your defenses."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:4"
+
+  chestplate:
+    display-name: "&bPatching Chestplate"
+    material: "IRON_CHESTPLATE"
+    lore:
+      - ""
+      - "&7Embrace the resilience of iron."
+      - "&7Feel the security of the patching armor."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:4"
+
+  leggings:
+    display-name: "&bPatching Leggings"
+    material: "IRON_LEGGINGS"
+    lore:
+      - ""
+      - "&7Move with the stability of iron."
+      - "&7Patching armor in every stride."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:4"
+
+  boots:
+    display-name: "&bPatching Boots"
+    material: "IRON_BOOTS"
+    lore:
+      - ""
+      - "&7Step firmly and securely."
+      - "&7Infused with the power of patching armor."
+    glow: false
+    enchantments:
+      - "DURABILITY:3"
+      - "PROTECTION_ENVIRONMENTAL:4"
+
+  full-set-equipped-effects:
+    custom-effects:
+      quick-stack:
+        enabled: true
+        value: 3 # number of additional blocks
+    potion-effects:
+      slow_digging: # mining fatigue
+        value: 2 # Set to 0 to disable
+        time: 10 # Recommended to keep over 5

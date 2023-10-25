@@ -65,6 +65,15 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <!-- EngineHub -->
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+        <repository>
+            <id>factions-repo</id>
+            <url>https://ci.ender.zone/plugin/repository/everything/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -81,5 +90,21 @@
             <version>1.7.6</version>
             <scope>provided</scope>
         </dependency>
+        <!-- WorldGuard -->
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
+            <version>6.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- MassiveCraft -->
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>Factions</artifactId>
+            <version>1.6.9.5-U0.5.18</version>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
 </project>

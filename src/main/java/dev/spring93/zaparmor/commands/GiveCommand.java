@@ -1,6 +1,7 @@
 package dev.spring93.zaparmor.commands;
 
 import dev.spring93.zaparmor.armor.Armor;
+import dev.spring93.zaparmor.armor.PatchingArmor;
 import dev.spring93.zaparmor.armor.SugarCaneArmor;
 import dev.spring93.zaparmor.utils.MessageManager;
 import org.bukkit.Bukkit;
@@ -17,7 +18,8 @@ public class GiveCommand extends BaseCommand {
     public GiveCommand() {
         super("give", 3, 3);
         this.armors = new Armor[] {
-                new SugarCaneArmor()
+                new SugarCaneArmor(),
+                new PatchingArmor()
         };
     }
 
