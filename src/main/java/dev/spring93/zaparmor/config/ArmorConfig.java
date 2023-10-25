@@ -18,4 +18,13 @@ public class ArmorConfig extends Config{
     public int getCustomEffectInteger(String effectName) {
         return config.getInt("armor-set.full-set-equipped-effects.custom-effects" + effectName + ".value");
     }
+
+    public Color getRGB(String path) {
+        String[] rawRGB = config.getString(path).split(",");
+        int red = Integer.parseInt(rawRGB[0].trim());
+        int green = Integer.parseInt(rawRGB[1].trim());
+        int blue = Integer.parseInt(rawRGB[2].trim());
+        return Color.fromRGB(red, green, blue);
+    }
+
 }

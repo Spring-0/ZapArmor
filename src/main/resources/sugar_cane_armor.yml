@@ -3,6 +3,7 @@ armor-set:
   helmet:
     display-name: "&aSugar Cane Helmet"
     material: "LEATHER_HELMET"
+    dye-color: "0, 255, 0" # Will only apply if material is leather armor.
     lore:
       - ""
       - "&7Made from the finest sugar canes."
@@ -15,6 +16,7 @@ armor-set:
   chestplate:
     display-name: "&aSugar Cane Chestplate"
     material: "LEATHER_CHESTPLATE"
+    dye-color: "0, 255, 0" # Will only apply if material is leather armor.
     lore:
       - ""
       - "&7Harness the power of nature."
@@ -27,6 +29,7 @@ armor-set:
   leggings:
     display-name: "&aSugar Cane Leggings"
     material: "LEATHER_LEGGINGS"
+    dye-color: "0, 255, 0" # Will only apply if material is leather armor.
     lore:
       - ""
       - "&7Run like the wind."
@@ -39,6 +42,7 @@ armor-set:
   boots:
     display-name: "&aSugar Cane Boots"
     material: "LEATHER_BOOTS"
+    dye-color: "0, 255, 0" # Will only apply if material is leather armor.
     lore:
       - ""
       - "&7Step lightly and swiftly."

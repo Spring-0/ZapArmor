@@ -4,13 +4,17 @@ import com.codingforcookies.armorequip.ArmorEquipEvent;
 import dev.spring93.zaparmor.ZapArmor;
 import dev.spring93.zaparmor.config.ArmorConfig;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
@@ -45,6 +49,12 @@ public abstract class Armor {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', armorConfig.getConfig().getString(path + ".display-name")));
         meta.setLore(armorConfig.getConfigStringList(path + ".lore"));
+
+        if(meta instanceof LeatherArmorMeta) {
+            Color color = armorConfig.getRGB(path + ".dye-color");
+            ((LeatherArmorMeta) meta).setColor(color);
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_POTION_EFFECTS);
+        }
 
         List<String> enchants = armorConfig.getConfigStringList(path + ".enchantments");
         for(String enchantName : enchants) {
