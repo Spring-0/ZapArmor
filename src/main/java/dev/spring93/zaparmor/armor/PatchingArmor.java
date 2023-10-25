@@ -1,8 +1,7 @@
 package dev.spring93.zaparmor.armor;
 
-import com.massivecraft.factions.listeners.FactionsBlockListener;
-import com.massivecraft.factions.perms.PermissibleAction;
 import dev.spring93.zaparmor.utils.MessageManager;
+import dev.spring93.zaparmor.utils.MiscUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class PatchingArmor extends Armor implements Listener {
 
@@ -54,7 +52,7 @@ public class PatchingArmor extends Armor implements Listener {
             for (int i = 0; i <= extraBlocks; i++) {
                 Location newBlockLocation = clickedBlock.getRelative(clickedFace, i).getLocation();
 
-                if(!canPlayerBuild(player, newBlockLocation)) continue;
+                if(!MiscUtils.canPlayerBuild(player, newBlockLocation)) continue;
 
                 if (newBlockLocation.getBlock().getType() == Material.AIR) {
                     if (item.getAmount() > 0) {
@@ -68,17 +66,4 @@ public class PatchingArmor extends Armor implements Listener {
             }
         }
     }
-
-    public boolean canPlayerBuild(Player player, Location location) {
-        boolean canBuildFactions = FactionsBlockListener.playerCanBuildDestroyBlock(
-                player,
-                location,
-                PermissibleAction.BUILD,
-                false
-        );
-        boolean canBuildWorldGuard = WorldGuardPlugin.inst().canBuild(player, location);
-
-        return canBuildFactions && canBuildWorldGuard;
-    }
-
 }
