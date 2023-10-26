@@ -24,6 +24,7 @@ import java.util.*;
 
 public abstract class Armor {
     private Set<UUID> fullSetEquipped = new HashSet<>();
+    private Map<UUID, BukkitRunnable> potionEffectTasks = new HashMap<>();
     protected String name;
     protected ArmorConfig armorConfig;
     protected ItemStack helmet;
@@ -105,7 +106,7 @@ public abstract class Armor {
                 @Override
                 public void run() {
                     if(!isArmorSetFullyEquipped(player) && fullSetEquipped.remove(player.getUniqueId())) {
-                        stopPotionEffectTask();
+                        stopPotionEffectTask(player.getUniqueId());
                         onArmorDequipAction(player);
                     }
                 }
@@ -117,7 +118,7 @@ public abstract class Armor {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         if(fullSetEquipped.remove(player.getUniqueId())) {
-            stopPotionEffectTask();
+            stopPotionEffectTask(player.getUniqueId());
         }
     }
 
@@ -136,17 +137,18 @@ public abstract class Armor {
                 if(isArmorSetFullyEquipped(player)){
                     applyPotionEffects(player);
                 }
-                else stopPotionEffectTask();
+                else stopPotionEffectTask(player.getUniqueId());
 
             }
         };
         potionEffectTask.runTaskTimer(ZapArmor.getInstance(), 0L, 100L); // 5 seconds
+        potionEffectTasks.put(player.getUniqueId(), potionEffectTask);
     }
 
-    protected void stopPotionEffectTask() {
-        if(potionEffectTask != null) {
-            potionEffectTask.cancel();
-            potionEffectTask = null;
+    protected void stopPotionEffectTask(UUID playerId) {
+        BukkitRunnable task = potionEffectTasks.remove(playerId);
+        if(task != null) {
+            task.cancel();
         }
     }
 
