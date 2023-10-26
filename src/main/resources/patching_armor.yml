@@ -53,6 +53,9 @@ armor-set:
       quick-stack:
         enabled: true
         value: 3 # number of additional blocks
+      damage-reduction:
+        enabled: true
+        value: 0.5 # Damage reduction percentage
     potion-effects:
       slow_digging: # mining fatigue
         value: 2 # Set to 0 to disable

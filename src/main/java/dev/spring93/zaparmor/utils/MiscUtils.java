@@ -1,5 +1,7 @@
 package dev.spring93.zaparmor.utils;
 
+import com.massivecraft.factions.FPlayer;
+import com.massivecraft.factions.FPlayers;
 import com.massivecraft.factions.listeners.FactionsBlockListener;
 import com.massivecraft.factions.perms.PermissibleAction;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -25,6 +27,11 @@ public class MiscUtils {
         boolean canBuildWorldGuard = WorldGuardPlugin.inst().canBuild(player, location);
 
         return canBuildFactions && canBuildWorldGuard;
+    }
+
+    public static boolean isPlayerInOwnClaims(Player player) {
+        FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
+        return fplayer.isInOwnTerritory();
     }
 
 }

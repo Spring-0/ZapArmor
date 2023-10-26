@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -29,8 +31,37 @@ public class PatchingArmor extends Armor implements Listener {
         MessageManager.sendMessage(player, "You have un-equipped the patching set.");
     }
 
+    /*
+     * Damage Reduction Feature
+     */
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageByEntityEvent event) {
+        if(!armorConfig.isCustomEffectEnabled("damage-reduction")) return;
+        if((event.getEntity() instanceof Player) && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+            Player player = (Player) event.getEntity();
+
+            if(!isArmorSetFullyEquipped(player)) return;
+            if(!armorConfig.isCustomEffectEnabled("damage-reduction")) return;
+            if(!MiscUtils.isPlayerInOwnClaims(player)) return;
+
+            double damageReductionPercentage = armorConfig.getCustomEffectDouble("damage-reduction");
+            double originalDamage = event.getDamage();
+            double reducedDamage = originalDamage * (1 - damageReductionPercentage);
+
+            event.setDamage(reducedDamage);
+            MessageManager.sendMessage(player, "Damage reduced by: " + damageReductionPercentage * 100 + "%");
+        }
+    }
+
+
+
+    /*
+     * Quick Stack Feature
+     */
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        if(!armorConfig.isCustomEffectEnabled("quick-stack")) return;
         Player player = event.getPlayer();
         if(isArmorSetFullyEquipped(player)){
             quickStack(player, event);

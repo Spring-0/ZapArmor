@@ -20,6 +20,10 @@ public class ArmorConfig extends Config{
         return config.getInt("armor-set.full-set-equipped-effects.custom-effects." + effectName + ".value");
     }
 
+    public double getCustomEffectDouble(String effectName) {
+        return config.getDouble("armor-set.full-set-equipped-effects.custom-effects." + effectName + ".value");
+    }
+
     public Color getRGB(String path) {
         String[] rawRGB = config.getString(path).split(",");
         int red = Integer.parseInt(rawRGB[0].trim());
