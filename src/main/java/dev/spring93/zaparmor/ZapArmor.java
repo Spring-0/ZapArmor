@@ -9,7 +9,9 @@ import dev.spring93.zaparmor.commands.ListCommand;
 import dev.spring93.zaparmor.config.ArmorConfig;
 import dev.spring93.zaparmor.config.DefaultConfig;
 import dev.spring93.zaparmor.utils.MessageManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import net.milkbowl.vault.economy.Economy;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,10 +24,15 @@ public final class ZapArmor extends JavaPlugin {
     private DefaultConfig defaultConfig;
     private ArmorConfig patchingArmorConfig;
     private Map<String, BaseCommand> commands;
+    private static Economy eco;
 
     @Override
     public void onEnable() {
         instance = this;
+        if(!setupEconomy()) {
+            getLogger().severe(String.format("[%s] - Disabled due to no vault dependency found!"));
+            getServer().getPluginManager().disablePlugin(this);
+        }
         initConfigs();
         registerListeners();
         registerCommands();
@@ -35,6 +42,18 @@ public final class ZapArmor extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        eco = rsp.getProvider();
+        return eco != null;
     }
 
     private void registerCommands() {
@@ -72,6 +91,10 @@ public final class ZapArmor extends JavaPlugin {
 
     public static ZapArmor getInstance() {
         return instance;
+    }
+
+    public static Economy getEconomy() {
+        return eco;
     }
 
 }

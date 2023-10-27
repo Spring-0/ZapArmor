@@ -70,6 +70,7 @@
             <id>enginehub</id>
             <url>https://maven.enginehub.org/repo/</url>
         </repository>
+        <!-- EnderZone -->
         <repository>
             <id>factions-repo</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
@@ -104,7 +105,20 @@
             <version>1.6.9.5-U0.5.18</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- FKore -->
+        <dependency>
+            <groupId>com.golfing8</groupId>
+            <artifactId>FactionsKore</artifactId>
+            <version>1.3.41</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/spring/Desktop/workspace/ZapArmor/libs/FactionsKore-1.3.41.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 </project>
