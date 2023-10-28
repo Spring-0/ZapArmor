@@ -56,6 +56,9 @@ public final class ZapArmor extends JavaPlugin {
         return eco != null;
     }
 
+    /**
+     * Method used to register commands & sub-commands.
+     */
     private void registerCommands() {
         commands = new HashMap<>();
         commands.put("give", new GiveCommand());
@@ -78,11 +81,17 @@ public final class ZapArmor extends JavaPlugin {
         });
     }
 
+    /**
+     * Method used to register listeners.
+     */
     private void registerListeners() {
         this.getServer().getPluginManager().registerEvents(new SugarCaneArmor(), this);
         this.getServer().getPluginManager().registerEvents(new PatchingArmor(), this);
     }
 
+    /**
+     * Method used to initialize configurations.
+     */
     private void initConfigs() {
         defaultConfig = new DefaultConfig();
         sugarCaneArmorConfig = new ArmorConfig("sugar_cane_armor");

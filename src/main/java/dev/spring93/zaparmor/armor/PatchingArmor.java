@@ -68,6 +68,11 @@ public class PatchingArmor extends Armor implements Listener {
         }
     }
 
+    /**
+     * Method used to implement the "quick stack" effect.
+     * @param player The player using the quick stack feature.
+     * @param event The PlayerInteractEvent
+     */
     private void quickStack(Player player, PlayerInteractEvent event) {
         ItemStack item = player.getInventory().getItemInHand();
 

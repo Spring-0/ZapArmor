@@ -23,11 +23,19 @@ public class SugarCaneArmor extends Armor implements Listener {
         eco = ZapArmor.getEconomy();
     }
 
+    /**
+     * Action when player equips their sugarcane armor.
+     * @param player
+     */
     @Override
     protected void onArmorEquipAction(Player player) {
         MessageManager.sendMessage(player, "You have equipped the sugar cane set.");
     }
 
+    /**
+     * Action when player un-equips their sugarcane armor.
+     * @param player
+     */
     @Override
     protected void onArmorDequipAction(Player player) {
         MessageManager.sendMessage(player, "You have un-equipped the sugar cane set.");
@@ -41,6 +49,11 @@ public class SugarCaneArmor extends Armor implements Listener {
 //        }
 //    }
 
+
+    /**
+     * Event Handler triggered on FKore harvester hoe use.
+     * @param event
+     */
     @EventHandler
     public void onHarvesterHoeUse(HarvesterHoeUseEvent event) {
         Player player = event.getPlayer();
@@ -59,7 +72,12 @@ public class SugarCaneArmor extends Armor implements Listener {
         }
     }
 
-
+    /**
+     * Method used to break x radius additional blocks.
+     *
+     * @param centerBlock The center block that the player broke.
+     * @return The total number of cane broken with the shockwave effect.
+     */
     private int breakWithRadiusReturnAmount(Block centerBlock) {
         String effectName = "shockwave";
         int caneCounter = 0;

@@ -14,6 +14,10 @@ public class DefaultConfig extends Config{
         return getConfigString("invalid-argument-message");
     }
 
+    /**
+     * Method used to return the configured message prefix.
+     * @return
+     */
     public String getMessagePrefix() {
         return getConfigString("message-prefix");
     }

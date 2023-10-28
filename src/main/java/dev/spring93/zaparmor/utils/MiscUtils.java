@@ -8,6 +8,9 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+/**
+ * General Utilities class
+ */
 public class MiscUtils {
 
     /**
@@ -29,6 +32,12 @@ public class MiscUtils {
         return canBuildFactions && canBuildWorldGuard;
     }
 
+    /**
+     * Method to check if the player is in their own Faction claims.
+     *
+     * @param player The player to check.
+     * @return True if the player is in their own claims, otherwise false.
+     */
     public static boolean isPlayerInOwnClaims(Player player) {
         FPlayer fplayer = FPlayers.getInstance().getByPlayer(player);
         return fplayer.isInOwnTerritory();

@@ -30,6 +30,10 @@ public abstract class Config {
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 
+    /**
+     * Method used to reload the config
+     * @param sender The user that requested to reload the config.
+     */
     public void reloadConfig(CommandSender sender) {
         ZapArmor plugin = ZapArmor.getInstance();
         plugin.reloadConfig();
@@ -37,10 +41,20 @@ public abstract class Config {
         MessageManager.sendMessage(sender, "has been reloaded.");
     }
 
+    /**
+     * Method used to retrieve a string from the config translating color codes to ampersand.
+     * @param path
+     * @return String
+     */
     protected String getConfigString(String path) {
         return ChatColor.translateAlternateColorCodes('&', config.getString(path));
     }
 
+    /**
+     * Method used to retrieve a List of strings from the config, translating color codes to ampersand.
+     * @param path
+     * @return List<String>
+     */
     public List<String> getConfigStringList(String path) {
         List<String> lore = config.getStringList(path);
         for (int i = 0; i < lore.size(); i++) {

@@ -42,6 +42,11 @@ public abstract class Armor {
         this.boots = createArmorItem("boots");
     }
 
+    /**
+     * Method used to create the custom armor item.
+     * @param armorPiece
+     * @return
+     */
     private ItemStack createArmorItem(String armorPiece) {
         String path = "armor-set." + armorPiece;
         Material material = Material.valueOf(armorConfig.getConfig().getString(path + ".material"));
@@ -77,6 +82,10 @@ public abstract class Armor {
         return item;
     }
 
+    /**
+     * Event handler triggered when armor is equipped.
+     * @param event
+     */
     @EventHandler
     public void onArmorEquip(ArmorEquipEvent event) {
         Player player = event.getPlayer();
@@ -96,6 +105,10 @@ public abstract class Armor {
         }
     }
 
+    /**
+     * Event handler triggered when armor is un-equipped.
+     * @param event
+     */
     @EventHandler
     public void onArmorDequip(ArmorEquipEvent event) {
         Player player = event.getPlayer();
@@ -114,6 +127,10 @@ public abstract class Armor {
         }
     }
 
+    /**
+     * Event handler triggered when a player quits the game.
+     * @param event
+     */
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
@@ -122,6 +139,10 @@ public abstract class Armor {
         }
     }
 
+    /**
+     * Event handler triggered when a player joins the game.
+     * @param event
+     */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -130,6 +151,10 @@ public abstract class Armor {
         }
     }
 
+    /**
+     * Method used to start the potion effect task for a player.
+     * @param player The player to start the effect task timer for.
+     */
     protected void startPotionEffectTask(Player player) {
         potionEffectTask = new BukkitRunnable() {
             @Override
@@ -145,6 +170,10 @@ public abstract class Armor {
         potionEffectTasks.put(player.getUniqueId(), potionEffectTask);
     }
 
+    /**
+     * Method used to stop the potion effect timer.
+     * @param playerId Player UUID.
+     */
     protected void stopPotionEffectTask(UUID playerId) {
         BukkitRunnable task = potionEffectTasks.remove(playerId);
         if(task != null) {
@@ -152,6 +181,11 @@ public abstract class Armor {
         }
     }
 
+    /**
+     * Method used to check if the player is wearing a full set of custom armor.
+     * @param player
+     * @return True if the player is wearing a full set, otherwise false.
+     */
     protected boolean isArmorSetFullyEquipped(Player player){
         ItemStack playerHelmet = player.getInventory().getHelmet();
         ItemStack playerChestplate = player.getInventory().getChestplate();
@@ -164,6 +198,11 @@ public abstract class Armor {
                 (playerBoots != null && isSimilar(playerBoots, boots));
     }
 
+    /**
+     * Method used to check if an item is a custom armor piece.
+     * @param armorPiece
+     * @return
+     */
     protected boolean isArmorPiece(ItemStack armorPiece) {
         return isSimilar(armorPiece, helmet) ||
                 isSimilar(armorPiece, chestplate) ||
@@ -171,6 +210,12 @@ public abstract class Armor {
                 isSimilar(armorPiece, boots);
     }
 
+    /**
+     * Method used to compare 2 item stacks by comparing lore and display name.
+     * @param item The item to be compared.
+     * @param configItem The item comparing to.
+     * @return True if item is a custom item, otherwise false.
+     */
     private boolean isSimilar(ItemStack item, ItemStack configItem) {
         if (item.hasItemMeta() && configItem.hasItemMeta()) {
             ItemMeta itemMeta = item.getItemMeta();
@@ -197,6 +242,10 @@ public abstract class Armor {
         return false;
     }
 
+    /**
+     * Method used to retrieve a List of PotionEffect objects configured by the user for a specific armor set.
+     * @return ArrayList of potion effect objects.
+     */
     protected List<PotionEffect> getPotionEffects() {
         List<PotionEffect> potionEffects = new ArrayList<>();
         ConfigurationSection effects = armorConfig.getConfig().getConfigurationSection("armor-set.full-set-equipped-effects.potion-effects");
@@ -217,7 +266,10 @@ public abstract class Armor {
         return potionEffects;
     }
 
-
+    /**
+     * Method used to apply the potion effects to the player.
+     * @param player The player to apply potion effects to.
+     */
     protected void applyPotionEffects(Player player) {
         List<PotionEffect> potionEffectsList = getPotionEffects();
         for(PotionEffect potionEffect : potionEffectsList) {
