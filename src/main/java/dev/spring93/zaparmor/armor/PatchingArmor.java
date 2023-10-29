@@ -23,12 +23,12 @@ public class PatchingArmor extends Armor implements Listener {
 
     @Override
     protected void onArmorEquipAction(Player player) {
-        MessageManager.sendMessage(player, "You have equipped the patching set.");
+        MessageManager.sendMessage(player, defaultConfig.getIndexString("on-equip-message"));
     }
 
     @Override
     protected void onArmorDequipAction(Player player) {
-        MessageManager.sendMessage(player, "You have un-equipped the patching set.");
+        MessageManager.sendMessage(player, defaultConfig.getIndexString("on-un-equip-message"));
     }
 
     /*

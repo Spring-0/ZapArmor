@@ -3,6 +3,7 @@ package dev.spring93.zaparmor.armor;
 import com.codingforcookies.armorequip.ArmorEquipEvent;
 import dev.spring93.zaparmor.ZapArmor;
 import dev.spring93.zaparmor.config.ArmorConfig;
+import dev.spring93.zaparmor.config.DefaultConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -27,6 +28,7 @@ public abstract class Armor {
     private Map<UUID, BukkitRunnable> potionEffectTasks = new HashMap<>();
     protected String name;
     protected ArmorConfig armorConfig;
+    protected DefaultConfig defaultConfig;
     protected ItemStack helmet;
     protected ItemStack chestplate;
     protected ItemStack leggings;
@@ -36,6 +38,7 @@ public abstract class Armor {
     public Armor(String configName) {
         this.name = configName;
         this.armorConfig = new ArmorConfig(configName);
+        this.defaultConfig = new DefaultConfig();
         this.helmet = createArmorItem("helmet");
         this.chestplate = createArmorItem("chestplate");
         this.leggings = createArmorItem("leggings");

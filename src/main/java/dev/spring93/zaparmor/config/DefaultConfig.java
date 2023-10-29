@@ -21,5 +21,8 @@ public class DefaultConfig extends Config{
     public String getMessagePrefix() {
         return getConfigString("message-prefix");
     }
+    public String getIndexString(String path) {
+        return getConfigString(path );
+    }
 
 }

@@ -1,1 +1,4 @@
 message-prefix: "&d[ZapArmor] &e"
+
+on-equip-message: "You have equipped the %armor_name% set"
+on-un-equip-message: "You have un-equipped the %armor_name% set"
