@@ -50,7 +50,8 @@ public class PatchingArmor extends Armor implements Listener {
             double reducedDamage = originalDamage * (1 - damageReductionPercentage);
 
             event.setDamage(reducedDamage);
-            MessageManager.sendMessage(player, "Damage reduced by: " + damageReductionPercentage * 100 + "%");
+            if(armorConfig.getConfig().getBoolean("armor-set.full-set-equipped-effects.custom-effects.damage-reduction.enable-damage-reduced-message"))
+                MessageManager.sendMessage(player, "Damage reduced by: " + damageReductionPercentage * 100 + "%");
         }
     }
 

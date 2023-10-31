@@ -55,6 +55,7 @@ armor-set:
         value: 3 # number of additional blocks
       damage-reduction:
         enabled: true
+        enable-damage-reduced-message: true
         value: 0.70 # Damage reduction percentage
     potion-effects:
       slow_digging: # mining fatigue
